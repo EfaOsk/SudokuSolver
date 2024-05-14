@@ -117,7 +117,7 @@ bool SudokuSolver::isValid(std::vector<std::vector<int>>& board, int row, int co
     return true;
 }
 
-void SudokuSolver::getValidNumbers(std::vector<std::vector<int>>& board, int row, int col, std::vector<int> nums) {
+void SudokuSolver::getValidNumbers(std::vector<std::vector<int>>& board, int row, int col, std::vector<int>& nums) {
     std::vector<int> values(10, 0); // Array to store the count of values (from 1 to 9)
 
     // Count the occurrences of values in the row
@@ -125,7 +125,7 @@ void SudokuSolver::getValidNumbers(std::vector<std::vector<int>>& board, int row
         if (c != col) {
             int value = board[row][c];
             if (value != 0)
-                values[value]++;
+                values[value-1]++;
         }
     }
 
@@ -134,7 +134,7 @@ void SudokuSolver::getValidNumbers(std::vector<std::vector<int>>& board, int row
         if (r != row) {
             int value = board[r][col];
             if (value != 0)
-                values[value]++;
+                values[value-1]++;
         }
     }
 
@@ -147,13 +147,13 @@ void SudokuSolver::getValidNumbers(std::vector<std::vector<int>>& board, int row
             // std::cout << "(" << r<< ", " << c << ") : "<<value << std::endl;
                 
             if (value != 0) {
-                values[value]++;
+                values[value-1]++;
             }
         }
     }
 
     // Find the missing value
-    for (int i = 1; i <= 9; i++) {
+    for (int i = 0; i < 9; i++) {
         if (values[i] == 0) {
             nums.push_back(i+1);
         }

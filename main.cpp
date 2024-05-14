@@ -50,12 +50,13 @@ int main(int argc, char* argv[]) {
         }
 
         // Print the solved Sudoku board
-        // for (const auto& row : board) {
-        //     for (int num : row) {
-        //         std::cout << num << ' ';
-        //     }
-        //     std::cout << std::endl;
-        // }
+        std::cout << "The solution:" << std::endl;
+        for (const auto& row : board) {
+            for (int num : row) {
+                std::cout << num << ' ';
+            }
+            std::cout << std::endl;
+        }
     }
 
     
